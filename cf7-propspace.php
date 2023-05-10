@@ -13,20 +13,17 @@
 
 defined( 'ABSPATH' ) or die( 'Unauthorized access!' );
 
+// add_action( 'wpcf7_mail_sent', 'techiepress_cf7_data', 10,1 );
 add_action( 'cfdb7_before_save', 'techiepress_cf7_data' );
-
-function techiepress_cf7_data( $form_data ) {
-
-    $upload_dir = home_url( 'wp-content/uploads/cfdb7_uploads/' );
+function techiepress_cf7_data( $form_data  ) {
 
     $data = [
-        'name' => $form_data['text-504'],
-        'email' => $form_data['email-347'],
-        'food' => $form_data['menu-340'][0],
-        'upload' => $upload_dir . $form_data['file-337cfdb7_file'],
+        'name' => $form_data['your-name'],
+        'email' => $form_data['your-email'],
+        // 'food' => $form_data['menu-340'][0], 
     ];
 
-    $url = 'https://hook.integromat.com/mcmufrx6en3zmf1xltvxwfc6efcnu7ag';
+    $url = 'https://hook.eu1.make.com/mphpxsgrjlq313eomumtjbk584b912q9';
 
     $args = [
         'method' => 'POST',
@@ -34,5 +31,35 @@ function techiepress_cf7_data( $form_data ) {
     ];
 
     wp_remote_post( $url, $args );
+
+
+// $contact_form
+    // $wpcf7 = WPCF7_ContactForm::get_current();
+    // $form_id = $contact_form->id();
+     
+     
+
+    //  if($form_id = 101) {
+    //     $submission =  WPCF7_Submission::get_instance();
+
+    //     $data = $submission->get_posted_data();
+
+    //     error_log( print_r($data, true));
+    //  }
+
+    // $data = [
+    //     'name' => $form_data['text-504'],
+    //     'email' => $form_data['email-347'],
+    //     'food' => $form_data['menu-340'][0]
+    // ];
+
+    // $url = 'https://hook.integromat.com/mcmufrx6en3zmf1xltvxwfc6efcnu7ag';
+
+    // $args = [
+    //     'method' => 'POST',
+    //     'body'   => $data,
+    // ];
+
+    // wp_remote_post( $url, $args );
      
 }
